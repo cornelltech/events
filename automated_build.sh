@@ -1,6 +1,6 @@
 # clone pages repo
 cd /tmp
-git clone ssh://git@github.com:cornelltech/events.git build
+git clone git@github.com:cornelltech/events.git/ build
 
 # rebuild page
 cd build
