@@ -3,7 +3,7 @@ cd /tmp
 git clone https://github.com/cornelltech/events/ build
 
 # rebuild page
-cd /tmp/build
+cd build
 python freezer.py
 
 # push newly built repo
