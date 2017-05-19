@@ -1,6 +1,6 @@
 # clone pages repo
 cd /tmp
-git clone https://github.com/cornelltech/events/ build
+git clone git@github.com:cornelltech/events.git build
 
 # rebuild page
 cd build
