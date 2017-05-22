@@ -4,7 +4,7 @@
 
 # rebuild page
 # cd build
-cd events
+# cd events
 
 python freezer.py
 
