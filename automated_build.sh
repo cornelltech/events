@@ -6,10 +6,6 @@
 # cd build
 cd events
 
-pip install contentful
-pip install flask-bootstrap
-pip install Frozen-Flask
-
 python freezer.py
 
 # push newly built repo

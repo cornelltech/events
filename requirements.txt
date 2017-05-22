@@ -1,0 +1,4 @@
+contentful
+flask
+flask-bootstrap
+Frozen-Flask
