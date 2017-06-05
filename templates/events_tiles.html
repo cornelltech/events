@@ -7,35 +7,60 @@
   <title>Cornell Tech Does Events</title>
   <!-- Bootstrap core CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
 </head>
 
 <body>
+
   <div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
+    
+    <!--<div class="row row-offcanvas row-offcanvas-right">
       <div class="jumbotron">
         <h1>Cornell Does Events!</h1>
         <p>an exciting catalog.</p>
       </div>
-    </div>
+    </div>-->
     <!-- /row-->
-    <div class="row">
-      {% for event in events %}
-      <div class="col-xs-6 col-lg-4">
-        <h2>{{ event.event_title }}</h2>
-        <p>{{event.description}} </p>
-        <span class="label label-default">foo</span> <span class="label label-primary">bar</span>
-        <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
-      </div>
-      <!--/.col-xs-6.col-lg-4-->
-      {% endfor %}
+    
+    <div class="filter-container">
+      <button class="filter-btn" data-filter-value="*">All</button>
+      <button class="filter-btn" data-filter-value=".friend">Friend</button>
+      <button class="filter-btn" data-filter-value=".visitors">Visitors</button>
+      <button class="filter-btn" data-filter-value=".blockchain">BlockChain</button>
+      <button class="filter-btn" data-filter-value=".cornell_tech">Cornell Tech</button>
     </div>
-    <!--/row-->
+    
+    <div class="grid">
+      
+      {% for event in events %}
+      <div class="grid-item {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}">
+        <h2>{{ event.event_title }}</h2>
+        <p>{{ event.description }} </p>
+        <p>Tags: 
+          {% for tag in event.tags %}<span>#{{ tag.title }} </span>{% endfor %}
+        </p>
+      </div>
+      <!--/.grid-item-->
+      {% endfor %}
+
+    </div>
+    <!--/grid-->
+    
     <footer class="footer">
       <p>events collated by the foundry</p>
     </footer>
   </div>
   <!-- /container -->
+
+
+  <!--JS Files-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!--<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>-->
+
+  <!--App JS-->
+  <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
 </body>
 
 </html>
->
