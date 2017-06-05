@@ -14,4 +14,4 @@ git config --global user.name "Rachel Sobel"
 
 git add docs/
 git commit -m "Automated rebuild on update"
-git push
+git push origin master

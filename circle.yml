@@ -5,3 +5,8 @@ dependencies:
 compile:
   pre:
     - bash automated_build.sh
+
+general:
+  branches:
+    only:
+      - master
