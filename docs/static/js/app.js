@@ -13,15 +13,12 @@
 
     }
 
-
     function initIsotope() {
         $('.grid').isotope({
             // options
             itemSelector: '.grid-item',
             isFitWidth: true
         });
-
-        
     }
 
     /** Attach event listeners */
