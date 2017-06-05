@@ -1,9 +1,19 @@
 import contentful
 from flask import Flask, render_template, request
 import pdb
+import os
 
-SPACE_ID = 'g2o2lk221h21'
-ACCESS_TOKEN = 'd4d54c120ee06a69e46d8dc64e56e1703093d27524ae6006c8833bc10938ae0f'
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+try:
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
+except Exception as e:
+    print "\nMissing .env file\n"
+
+SPACE_ID = os.environ.get('SPACE_ID', None)
+ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', None)
 
 app = Flask(__name__)
 
