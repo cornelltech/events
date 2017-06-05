@@ -42,10 +42,11 @@ for entry in entries:
     print entry.sys['id']
 
     with open(filename, 'w') as outfile:
-        json.dumps(jsonpickle.encode(entry), outfile)
+        json.dump(jsonpickle.encode(entry), outfile)
         # this is really hacky #woohoo
         contentful_tz = entry_modified.tzinfo
         era_zero = datetime.datetime(1970,1,1).replace(tzinfo=contentful_tz)
         in_seconds = (entry_modified - era_zero).total_seconds()
         os.utime(filename, (in_seconds, in_seconds))
         print os.path.getmtime(filename)
+        outfile.close()
