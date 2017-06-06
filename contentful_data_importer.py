@@ -17,11 +17,17 @@ try:
 except Exception as e:
     print "\nMissing .env file\n"
 
+# contentful space data
 SPACE_ID = os.environ.get('SPACE_ID', None)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', None)
+
+# contentful query
 CONTENT_ID_EVENT = 'event'
 ORDER_RESULTS_BY = '-sys.updatedAt' # most recently updated first
 LIMIT = 3
+
+# config where files get saved
+OUT_DIR = 'json'
 
 def process_entries(client):
     skip = 0
@@ -33,7 +39,7 @@ def process_entries(client):
             'skip': skip})
 
         for entry in entries:
-            filename = 'json/' + entry.sys['id'] + '.json'
+            filename = OUT_DIR + '/' + entry.sys['id'] + '.json'
             entry_modified = entry.sys['updated_at']
             if (os.path.isfile(filename)):
                 file_modified = \
