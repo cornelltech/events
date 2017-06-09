@@ -27,7 +27,7 @@ ORDER_RESULTS_BY = '-sys.updatedAt' # most recently updated first
 LIMIT = 3
 
 # config where files get saved
-OUT_DIR = 'json'
+OUT_DIR = 'data'
 
 def process_entries(client):
     skip = 0
@@ -39,7 +39,7 @@ def process_entries(client):
             'skip': skip})
 
         for entry in entries:
-            filename = OUT_DIR + '/' + entry.sys['id'] + '.json'
+            filename = os.path.join(OUT_DIR, entry.sys['id'] + '.json')
             entry_modified = entry.sys['updated_at']
             if (os.path.isfile(filename)):
                 file_modified = \
@@ -60,7 +60,6 @@ def process_entries(client):
                 era_zero = datetime.datetime(1970,1,1).replace(
                                                         tzinfo=contentful_tz)
                 in_seconds = (entry_modified - era_zero).total_seconds()
-                outfile.close()
                 os.utime(filename, (in_seconds, in_seconds))
 
                 print 'saving file: ', entry.event_title, 'id=', entry.sys['id']
@@ -73,4 +72,6 @@ def process_entries(client):
 
 if __name__ == '__main__':
     client = Client(SPACE_ID, ACCESS_TOKEN)
+    if (not os.path.exists(OUT_DIR)):
+        os.makedirs(OUT_DIR)
     process_entries(client)
