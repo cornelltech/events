@@ -2,8 +2,6 @@
     "use strict";
 
     function filterOn(val) {
-        // $('.grid').isotope({ filter: val });
-
         if( val === '*' ) {
             $('.grid-item').show();
         }else {
@@ -17,6 +15,15 @@
         $('select').select2({
             placeholder: 'Filter by tag',
         });
+        $('select').on("select2:select", function (e) { 
+            var tag = e.target.value;
+            filterOn('.' + tag);
+        });
+        $('select').on("select2:unselect", function (e) { 
+            var tag = e.target.value;
+
+        });
+
     }
 
     function initIsotope() {
