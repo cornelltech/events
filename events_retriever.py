@@ -19,16 +19,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def index_page():
-    return render_template('events_tiles.html', events=get_events())
+    events, tags = get_events()
+    return render_template('events_tiles.html', events=events, tags=tags)
 
 def get_events():
     client = contentful.Client(SPACE_ID, ACCESS_TOKEN)
     entries = client.entries()
     events = []
+    tags = []
     for entry in entries:
+
         if(entry.content_type.id == 'event'):
             events.append(entry)
-    return events
+
+        if(entry.content_type.id == 'tag'):
+            tags.append(entry)
+
+    return events, tags
 
 if __name__ == '__main__':
     app.run()

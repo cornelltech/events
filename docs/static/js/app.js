@@ -13,6 +13,12 @@
 
     }
 
+    function initSelect() {
+        $('select').select2({
+            placeholder: 'Filter by tag',
+        });
+    }
+
     function initIsotope() {
         $('.grid').isotope({
             // options
@@ -31,7 +37,7 @@
 
     /** Main */
     function main(){
-        // initIsotope();
+        initSelect();
     } 
     main();
 

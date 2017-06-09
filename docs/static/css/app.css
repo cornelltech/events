@@ -2,8 +2,6 @@
 html, body {
     margin: 0px;
     padding: 0px;
-
-    background-color: #eeeeee;
 }
 
 /** Colors **/
@@ -28,11 +26,14 @@ html, body {
 
 
 /*Bootstrap Overrides*/
-
+.select2-container {
+    width: 100% !important;
+}
 
 /*Custom CSS*/
 .app-container {
     margin: 0 16px;
+    min-height: 100vh;
 }
 
 /* Controls */
@@ -62,6 +63,16 @@ html, body {
     align-content: center;
     flex-wrap: wrap;
     padding: 15px;
+}
+
+.filter-container button {
+    margin: 0 8px;
+}
+
+.tag-filter {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Grid */
