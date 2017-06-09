@@ -2,18 +2,23 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  
 
 <head>
   <title>Cornell Tech Does Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <!-- Bootstrap core CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 
   <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="app-container">
     
     <!--<div class="row row-offcanvas row-offcanvas-right">
       <div class="jumbotron">
@@ -34,12 +39,27 @@
     <div class="grid">
       
       {% for event in events %}
-      <div class="grid-item {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}">
-        <h2>{{ event.event_title }}</h2>
-        <p>{{ event.description }} </p>
-        <p>Tags: 
-          {% for tag in event.tags %}<span>#{{ tag.title }} </span>{% endfor %}
-        </p>
+      <div class="grid-item animated fadeIn {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}">
+        
+        <div class="header">
+          <div class="date">
+            <p>Tues</p>
+            <p>23 June</p>
+          </div>
+          <div class="category">
+            <p>Talk</p>
+          </div>
+        </div>
+
+        <div class="details">
+          <h2>{{ event.event_title }}</h2>
+          <p>{{ event.description }} </p>
+
+          <div class="tags">
+            {% for tag in event.tags %}<span>#{{ tag.title }} </span>{% endfor %}
+          </div>
+        </div>
+
       </div>
       <!--/.grid-item-->
       {% endfor %}

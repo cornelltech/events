@@ -34,7 +34,5 @@
         // initIsotope();
     } 
     main();
-    
-
 
 }) ( jQuery, window, document );
