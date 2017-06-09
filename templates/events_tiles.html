@@ -54,8 +54,8 @@
         </div>
 
         <div class="details">
-          <h2>{{ event.event_title }}</h2>
-          <p>{{ event.description }} </p>
+          <h2 class="max-lines">{{ event.event_title }}</h2>
+          <p class="overflow-ellipsis">{{ event.description }} </p>
 
           <div class="tags">
             {% for tag in event.tags %}<span>#{{ tag.title }} </span>{% endfor %}

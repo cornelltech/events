@@ -14,6 +14,22 @@ html, body {
 }
 
 /* Controls */
+
+/*max-height: = line-height: × <number-of-lines> */
+.max-lines {
+    display: block; /* or inline-block */
+    max-height: 3.1em;
+    line-height: 1.0em;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .filter-container {
     display: flex;
     flex-direction: row;
@@ -81,16 +97,14 @@ html, body {
     margin: 8px 0;
 }
 .grid-item .details p {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    
 }
 
 
 @media (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+  and (max-device-width: 667px) { 
     .grid-item {
         width: 100%;
+        overflow-x: hidden;
     }
 }
