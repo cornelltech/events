@@ -14,6 +14,13 @@
 
 
   <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
+
+  <style>
+    body {
+      background-image: url("{{url_for('static', filename='assets/ps_neutral.png')}}");
+      background-repeat: repeat;
+    }
+  </style>
 </head>
 
 <body>
@@ -39,17 +46,19 @@
     <div class="grid">
       
       {% for event in events %}
-      <div class="grid-item animated fadeIn {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}"
+      <div class="grid-item animated fadeIn 
+                  {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}
+                  {{ event.category }}"
            data-toggle="modal" 
            data-target="#event-modal-{{ event.sys['id'] }}">
         
         <div class="header">
           <div class="date">
-            <p>Tues</p>
-            <p>23 June</p>
+            <p>{{ event.start_time.strftime('%a') }}</p>
+            <p>{{ event.start_time.strftime('%d %b') }}</p>
           </div>
           <div class="category">
-            <p>Talk</p>
+            <p>{{ event.category }}</p>
           </div>
         </div>
 
@@ -58,7 +67,7 @@
           <p class="overflow-ellipsis">{{ event.description }} </p>
 
           <div class="tags">
-            {% for tag in event.tags %}<span>#{{ tag.title }} </span>{% endfor %}
+            {% for tag in event.tags %}<span class="underline">#{{ tag.title }}</span> {% endfor %}
           </div>
         </div>
 
