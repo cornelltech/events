@@ -6,6 +6,7 @@
 # cd build
 # cd events
 
+python contentful_data_importer.py # write new data to files
 python freezer.py
 
 # push newly built repo
