@@ -31,9 +31,9 @@ OUT_DIR = 'data'
 
 def process_entries(client, entry_type):
     skip = 0
-    events_dir = os.path.join(OUT_DIR, entry_type)
-    if (not os.path.exists(events_dir)):
-        os.makedirs(events_dir)
+    entry_dir = os.path.join(OUT_DIR, entry_type)
+    if (not os.path.exists(entry_dir)):
+        os.makedirs(entry_dir)
     while (True):
         entries = client.entries({
             'order': ORDER_RESULTS_BY,
@@ -42,7 +42,7 @@ def process_entries(client, entry_type):
             'skip': skip})
 
         for entry in entries:
-            filename = os.path.join(events_dir, entry.sys['id'] + '.json')
+            filename = os.path.join(entry_dir, entry.sys['id'] + '.json')
             entry_modified = entry.sys['updated_at']
             if (os.path.isfile(filename)):
                 file_modified = \
