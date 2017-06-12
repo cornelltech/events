@@ -21,25 +21,29 @@ except Exception as e:
 SPACE_ID = os.environ.get('SPACE_ID', None)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', None)
 
-# contentful query
+# contentful query data
 CONTENT_ID_EVENT = 'event'
+CONTENT_ID_TAG = 'tag'
 ORDER_RESULTS_BY = '-sys.updatedAt' # most recently updated first
 LIMIT = 3
 
 # config where files get saved
 OUT_DIR = 'data'
 
-def process_entries(client):
+def process_entries(client, entry_type):
     skip = 0
+    events_dir = os.path.join(OUT_DIR, entry_type)
+    if (not os.path.exists(events_dir)):
+        os.makedirs(events_dir)
     while (True):
         entries = client.entries({
             'order': ORDER_RESULTS_BY,
-            'content_type': CONTENT_ID_EVENT,
+            'content_type': entry_type,
             'limit': LIMIT,
             'skip': skip})
 
         for entry in entries:
-            filename = os.path.join(OUT_DIR, entry.sys['id'] + '.json')
+            filename = os.path.join(events_dir, entry.sys['id'] + '.json')
             entry_modified = entry.sys['updated_at']
             if (os.path.isfile(filename)):
                 file_modified = \
@@ -49,7 +53,7 @@ def process_entries(client):
                 # if we reach an entry we've already processed, the remaining
                 # data on the server is older than our stored data
                 if(int((entry_modified - file_modified).total_seconds()) == 0):
-                    print 'stopping at: ', entry.event_title, '(', filename, ')'
+                    print 'stopping at: ', filename
                     print 'remaining content was processed on an earlier run'
                     return
 
@@ -61,11 +65,10 @@ def process_entries(client):
                                                         tzinfo=contentful_tz)
                 in_seconds = (entry_modified - era_zero).total_seconds()
                 os.utime(filename, (in_seconds, in_seconds))
-
-                print 'saving file: ', entry.event_title, 'id=', entry.sys['id']
+                print 'saving', entry_type, entry.sys['id']
 
         if (len(entries) < LIMIT): # when you reach the final page
-            print 'you have processed all the data'
+            print 'you have processed all the data of type: ', entry_type
             return
         else:
             skip += LIMIT
@@ -74,4 +77,5 @@ if __name__ == '__main__':
     client = Client(SPACE_ID, ACCESS_TOKEN)
     if (not os.path.exists(OUT_DIR)):
         os.makedirs(OUT_DIR)
-    process_entries(client)
+    process_entries(client, CONTENT_ID_EVENT)
+    process_entries(client, CONTENT_ID_TAG)
