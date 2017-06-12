@@ -63,6 +63,7 @@ def process_entries(client, entry_type):
                 era_zero = datetime.datetime(1970,1,1).replace(
                                                         tzinfo=contentful_tz)
                 in_seconds = (entry_modified - era_zero).total_seconds()
+                outfile.close() # this makes the timestamp comparisons work out
                 os.utime(filename, (in_seconds, in_seconds))
                 print 'saving', entry_type, entry.sys['id']
 
