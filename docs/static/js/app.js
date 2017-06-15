@@ -37,8 +37,6 @@
      */
     function setFilterCategory(category) {
         filters.categories = normalizeText(category);
-
-        console.log(filters);
     }
 
     /**
@@ -49,8 +47,6 @@
         filters.tags = $.map( tags, function( elem ) {
             return '.tag-' + normalizeText(elem);
         });
-
-        console.log(filters);
     }
 
     function filterItems() {
@@ -69,8 +65,6 @@
         $.each(filters.tags, function( index, value ) {
             focusedItems = focusedItems.filter(value);
         });
-
-        console.log(focusedItems);
 
         focusedItems.show();
         
@@ -102,15 +96,6 @@
         });
 
     }
-
-    function initIsotope() {
-        $('.grid').isotope({
-            // options
-            itemSelector: '.grid-item',
-            isFitWidth: true
-        });
-    }
-
 
     /** Main */
 

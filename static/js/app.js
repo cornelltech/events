@@ -97,15 +97,6 @@
 
     }
 
-    function initIsotope() {
-        $('.grid').isotope({
-            // options
-            itemSelector: '.grid-item',
-            isFitWidth: true
-        });
-    }
-
-
     /** Main */
 
     function main(){
