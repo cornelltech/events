@@ -61,7 +61,7 @@
       
       {% for event in events %}
       <div class="grid-item animated fadeIn 
-                  {% for tag in event.tags %}{{ tag.title.lower().replace(' ', '_') }} {% endfor %}
+                  {% for tag in event.tags %}tag-{{ tag.title.lower().replace(' ', '_') }} {% endfor %}
                   {{ event.category }}"
            data-toggle="modal" 
            data-target="#event-modal-{{ event.sys['id'] }}">
@@ -92,9 +92,6 @@
     </div>
     <!--/grid-->
     
-    <footer class="footer">
-      <p>events collated by the foundry</p>
-    </footer>
   </div>
   <!-- /container -->
 
