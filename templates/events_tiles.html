@@ -2,40 +2,129 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  
 
 <head>
   <title>Cornell Tech Does Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <!-- Bootstrap core CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+  <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
+
+  <style>
+    body,
+    body {
+      background-image: url("{{url_for('static', filename='assets/ps_neutral.png')}}");
+      background-repeat: repeat;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="row row-offcanvas row-offcanvas-right">
+
+  <div class="app-container">
+    
+    <!--<div class="row row-offcanvas row-offcanvas-right">
       <div class="jumbotron">
         <h1>Cornell Does Events!</h1>
         <p>an exciting catalog.</p>
       </div>
-    </div>
+    </div>-->
     <!-- /row-->
-    <div class="row">
-      {% for event in events %}
-      <div class="col-xs-6 col-lg-4">
-        <h2>{{ event.event_title }}</h2>
-        <p>{{event.description}} </p>
-        <span class="label label-default">foo</span> <span class="label label-primary">bar</span>
-        <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
-      </div>
-      <!--/.col-xs-6.col-lg-4-->
-      {% endfor %}
+    
+    <div class="filter-container">
+      <button class="btn btn-default filter-btn" data-filter-value="*">All</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".talk">Talks</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".conference">Conferences</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".recruitment">Recruitement</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".showcase">Showcase</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".discussion">Discussion</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".hackathon">Hackathon</button>
     </div>
-    <!--/row-->
-    <footer class="footer">
-      <p>events collated by the foundry</p>
-    </footer>
+
+    <div class="tag-filter">
+      <select name="select"  multiple="multiple"> <!--Supplement an id here instead of using 'name'-->
+        {% for tag in tags %}
+        <option value="{{ tag.title }}">{{ tag.title }}</option> 
+        {% endfor %}
+      </select>
+
+    </div>
+    
+    <div class="grid">
+      
+      {% for event in events %}
+      <div class="grid-item animated fadeIn 
+                  {% for tag in event.tags %}tag-{{ tag.title.lower().replace(' ', '_') }} {% endfor %}
+                  {{ event.category }}"
+           data-toggle="modal" 
+           data-target="#event-modal-{{ event.sys['id'] }}">
+        
+        <div class="header">
+          <div class="date">
+            <p>{{ event.start_time.strftime('%a') }}</p>
+            <p>{{ event.start_time.strftime('%d %b') }}</p>
+          </div>
+          <div class="category">
+            <p>{{ event.category }}</p>
+          </div>
+        </div>
+
+        <div class="details">
+          <h2 class="max-lines">{{ event.event_title }}</h2>
+          <p class="overflow-ellipsis">{{ event.description }} </p>
+
+          <div class="tags">
+            {% for tag in event.tags %}<span class="underline">#{{ tag.title }}</span> {% endfor %}
+          </div>
+        </div>
+
+      </div>
+      <!--/.grid-item-->
+      {% endfor %}
+
+    </div>
+    <!--/grid-->
+    
   </div>
   <!-- /container -->
+
+
+
+  <!-- Modals List -->
+  {% for event in events %}
+  <div class="modal animated fadeIn" tabindex="-1" role="dialog" id="event-modal-{{ event.sys['id'] }}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{ event.event_title }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  {% endfor %}
+  <!-- /Modals List -->
+
+
+  <!--JS Files-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  <!--App JS-->
+  <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
 </body>
 
 </html>
->

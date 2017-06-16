@@ -1,0 +1,146 @@
+/** Top Level **/
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+/** Colors **/
+.talk {
+    background-color: rgba(53,35,93, 1) !important;
+}
+.conference {
+    background-color: rgba(219,36,100, 1) !important;
+}
+.recruitment {
+    background-color: rgba(203,36,2, 1) !important;
+}
+.showcase {
+    background-color: rgba(184,220,60, 1) !important;
+}
+.discussion {
+    background-color: rgba(76,73,162, 1) !important;
+}
+.hackathon {
+    background-color: rgba(163,26,72, 1) !important;
+}
+
+
+/*Bootstrap Overrides*/
+.select2-container {
+    width: 100% !important;
+}
+
+/*Custom CSS*/
+.app-container {
+    margin: 0 16px;
+    min-height: 100vh;
+}
+
+/* Controls */
+
+/*max-height: = line-height: × <number-of-lines> */
+.max-lines {
+    display: block; /* or inline-block */
+    max-height: 3.1em;
+    line-height: 1.0em;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.underline {
+    border-bottom: 2px solid white;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.filter-container button {
+    margin: 0 8px;
+}
+
+.tag-filter {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid */
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.grid-item { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 350px;
+    height: 300px;
+    
+    color: white;
+    background-color: #0ab78f;
+    border-radius: 6px;
+    
+    margin: 15px;
+
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
+
+    cursor: pointer;
+}
+
+.grid-item:hover {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.5);
+    transition: box-shadow 250ms;
+}
+
+.grid-item .header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.grid-item .header .category {
+    text-transform: uppercase;
+}
+.grid-item .header p { 
+    margin: 0px;
+}
+
+.grid-item .details {
+    padding: 15px;
+    max-height: 80%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,.175);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.grid-item .details h2 {
+    margin: 8px 0;
+}
+.grid-item .details p {
+    
+}
+
+
+@media (min-device-width: 375px) 
+  and (max-device-width: 667px) { 
+    .grid-item {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
