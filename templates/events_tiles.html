@@ -69,8 +69,8 @@
             <p>{{ event.start_time.strftime('%a') }}</p>
             <p>{{ event.start_time.strftime('%d %b') }}</p>
           </div>
-          <div class="category">
-            <p>{{ event.category }}</p>
+          <div class="category category-filter">
+            <p data-category="{{ event.category }}">{{ event.category }}</p>
           </div>
         </div>
 
@@ -79,7 +79,7 @@
           <p class="overflow-ellipsis">{{ event.description }} </p>
 
           <div class="tags">
-            {% for tag in event.tags %}<span class="underline">#{{ tag.title }}</span> {% endfor %}
+            {% for tag in event.tags %}<span class="underline" data-tag="{{ tag.title }}">#{{ tag.title }}</span> {% endfor %}
           </div>
         </div>
 
