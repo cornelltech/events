@@ -94,7 +94,30 @@
             setFilterTags(tags);
             filterItems();
         });
+    }
 
+    function initQuickFilterEventListeners() {
+        $('.tags').click(function(evt) {
+            evt.stopPropagation(); // prevent the event from toggling modal
+
+            var filterTagValue = evt.target.getAttribute('data-tag');
+
+            // update select2
+            $('select').val([filterTagValue]).trigger("change");
+
+            // apply the filter
+            setFilterTags([filterTagValue]);
+            filterItems();
+        });
+
+        $('.category-filter').click(function(evt) {
+            evt.stopPropagation();
+
+            var filterCategoryValue = evt.target.getAttribute('data-category');
+
+            setFilterCategory('.' + filterCategoryValue);
+            filterItems();
+        });
     }
 
     /** Main */
@@ -102,6 +125,7 @@
     function main(){
         initCategories();
         initSelect();
+        initQuickFilterEventListeners();
     } 
     main();
 
