@@ -7,6 +7,9 @@ from urlparse import urlparse, urljoin
 from os.path import join, dirname
 from dotenv import load_dotenv
 
+# bookmarklet contents:
+# javascript:location.href='http://127.0.0.1:5000/add/?url='+location.href;
+
 try:
     dotenv_path = join(dirname(__file__), '.env')
     load_dotenv(dotenv_path)
