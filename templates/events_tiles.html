@@ -117,9 +117,16 @@
           </div>
           {% endif %}
 
-          <div class="details-section location">
-            Room 204
-          </div>
+          {% if event.location_object %}
+            {% for loc in event.location_object %}
+            <div class="details-section location">
+              <p>
+                <span>{{ loc.room }},</span>
+                {{ loc.name }}
+              </p>
+            </div>
+            {% endfor %}
+          {% endif %}
 
           {% if event.category %}
           <div class="details-section labels">
