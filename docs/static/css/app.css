@@ -29,11 +29,68 @@ html, body {
 .select2-container {
     width: 100% !important;
 }
+.modal-header {
+    border: none;
+}
 
 /*Custom CSS*/
 .app-container {
     margin: 0 16px;
     min-height: 100vh;
+}
+
+.modal-body .heading h4 {
+    line-height: 1.3;
+    font-weight: 500;
+    text-align: center;
+}
+
+.details-section {
+    text-align: center;
+    padding: 16px;
+    /*border-top: 1px solid rgba(0,0,0,.5);*/
+}
+.details-section.time {
+    font-size: 18px;
+    color: rgba(0,0,0,.5);
+}
+.details-section.time p.hyphen {
+    line-height: .5;
+}
+.details-section.location {
+    font-size: 18px;
+    color: rgba(0,0,0,.5);
+}
+.details-section.labels h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.5);
+}
+.details-section.labels .detail-tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 8px;
+}
+.details-section.description {
+    text-align: justify;
+}
+
+.details-section h1,
+.details-section h2,
+.details-section h3,
+.details-section h4,
+.details-section p {
+    margin: 0px;
+}
+
+.pill {
+    background-color: #0ab78f;
+    padding: 4px 8px;
+    margin: 4px;
+    color: white;
+    border-radius: 10px;
 }
 
 /* Controls */
