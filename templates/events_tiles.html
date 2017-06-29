@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
+  <!--Add To Calendar-->
+  <link href="http://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
+
+  <!--App CSS-->
   <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
 
   <style>
@@ -114,6 +118,36 @@
             <p>{{ event.start_time.strftime('%I:%M%p %A, %d %B') }}</p>
 
             {% if event.end_time %}<p class="hyphen">-</p><p>{{ event.end_time.strftime('%I:%M%p %A, %d %B') }}</p>{% endif %}
+            <!--ref: http://addtocalendar.com-->
+            <span class="addtocalendar atc-style-blue">
+                <var class="atc_event">
+                    <var class="atc_date_start">
+                      {{ event.start_time.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </var>
+                    <var class="atc_date_end">
+                      {% if event.end_time %}
+                        {{ event.end_time.strftime('%Y-%m-%d %H:%M:%S') }}
+                      {% else %}
+                        {{ event.start_time.strftime('%Y-%m-%d %H:%M:%S') }}
+                      {% endif %}
+                    </var>
+                    <var class="atc_timezone">America/New_York</var>
+                    <var class="atc_title">{{ event.event_title }}</var>
+                    <var class="atc_description"></var>
+                    <var class="atc_location">
+                      {% if event.location_object %}
+                        {% for loc in event.location_object %}
+                          {{ loc.name }}
+                        {% endfor %}
+                      {% else %}
+                        New York
+                      {% endif %}
+                    </var>
+                    <var class="atc_organizer">Cornell Tech</var>
+                    <var class="atc_organizer_email">events@cornell.edu</var>
+                </var>
+            </span>
+
           </div>
           {% endif %}
 
@@ -164,6 +198,17 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+  
+  <!--Add To Calendar ref: http://addtocalendar.com-->
+  <script type="text/javascript">(function () {
+            if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
+            if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
+                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
+                s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
+                var h = d[g]('body')[0];h.appendChild(s); }})();
+    </script>
+  
   <!--App JS-->
   <script src="{{url_for('static', filename='js/app.js')}}"></script>
 
