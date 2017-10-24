@@ -42,7 +42,7 @@ def get_events():
         if(entry.content_type.id == 'tag'):
             tags.append(entry)
 
-    return events, tags
+    return sorted(events, key=lambda x: x.start_time.strftime('%Y-%m-%d'), reverse=True), tags
 
 if __name__ == '__main__':
     app.run()
