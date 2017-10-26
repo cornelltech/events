@@ -7,7 +7,8 @@
 # cd events
 
 python contentful_data_importer.py # write new data to files
-python freezer.py
+export PYTHONIOENCODING=utf-8
+python build_site.py > docs/index.html
 
 # push newly built repo
 git config --global user.email "rachel.sobel@cornell.edu"
