@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  
+
 
 <head>
   <title>Cornell Tech Does Events</title>
@@ -27,7 +27,7 @@
 <body>
 
   <div class="app-container">
-    
+
     <!--<div class="row row-offcanvas row-offcanvas-right">
       <div class="jumbotron">
         <h1>Cornell Does Events!</h1>
@@ -35,7 +35,7 @@
       </div>
     </div>-->
     <!-- /row-->
-    
+
     <div class="filter-container">
       <button class="btn btn-default filter-btn" data-filter-value="*">All</button>
       <button class="btn btn-default filter-btn" data-filter-value=".talk">Talks</button>
@@ -49,21 +49,21 @@
     <div class="tag-filter">
       <select name="select"  multiple="multiple"> <!--Supplement an id here instead of using 'name'-->
         {% for tag in tags %}
-        <option value="{{ tag.title }}">{{ tag.title }}</option> 
+        <option value="{{ tag.title }}">{{ tag.title }}</option>
         {% endfor %}
       </select>
 
     </div>
-    
+
     <div class="grid">
-      
+
       {% for event in events %}
-      <div class="grid-item animated fadeIn 
+      <div class="grid-item animated fadeIn
                   {% for tag in event.tags %}tag-{{ tag.title.lower().replace(' ', '_') }} {% endfor %}
                   {{ event.category }}"
-           data-toggle="modal" 
+           data-toggle="modal"
            data-target="#event-modal-{{ event.sys['id'] }}">
-        
+
         <div class="header">
           <div class="date">
             <p>{{ event.start_time.strftime('%a') }}</p>
@@ -89,7 +89,7 @@
 
     </div>
     <!--/grid-->
-    
+
   </div>
   <!-- /container -->
 
@@ -104,7 +104,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          
+
           <div class="heading">
             <h4>{{ event.event_title }}</h4>
           </div>
@@ -137,6 +137,13 @@
           </div>
           {% endif %}
 
+          {% if event.external_url %}
+          <div class="details-section external-url">
+            <a href="{{ event.external_url }}">{{ event.external_url }}</a>
+          </div>
+          {% endif %}
+
+
           {% if event.description %}
           <div class="details-section description">
             <p>{{ event.description|e }}</p>
@@ -144,7 +151,7 @@
           {% endif %}
 
         </div>
-        
+
         <!--No need for now-->
         <!--
         <div class="modal-footer">
