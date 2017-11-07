@@ -57,6 +57,9 @@ html, body {
 .details-section.time p.hyphen {
     line-height: .5;
 }
+.details-section.time .addtocalendar {
+    margin: 8px;
+}
 .details-section.location {
     font-size: 18px;
     color: rgba(0,0,0,.5);
