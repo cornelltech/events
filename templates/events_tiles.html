@@ -171,6 +171,13 @@
           </div>
           {% endif %}
 
+          {% if event.external_url %}
+          <div class="details-section external-url">
+            <a href="{{ event.external_url }}">{{ event.external_url }}</a>
+          </div>
+          {% endif %}
+
+
           {% if event.description %}
           <div class="details-section description">
             <p>{{ event.description|e }}</p>
