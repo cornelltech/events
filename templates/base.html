@@ -1,0 +1,87 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <title>Cornell Tech Does Events!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+  <!--Add To Calendar-->
+  <link href="https://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
+
+  <!--App CSS-->
+  <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
+
+  <style>
+    body,
+    body {
+      background-image: url("{{url_for('static', filename='assets/ps_neutral.png')}}");
+      background-repeat: repeat;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!--<div class="row row-offcanvas row-offcanvas-right">
+      <div class="jumbotron">
+        <h1>Cornell Does Events!</h1>
+        <p>an exciting catalog.</p>
+      </div>
+    </div>-->
+    <!-- /row-->
+
+    <div class="filter-container">
+      <button class="btn btn-default filter-btn" data-filter-value="*">All</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".talk">Talks</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".conference">Conferences</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".recruitment">Recruitement</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".showcase">Showcase</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".discussion">Discussion</button>
+      <button class="btn btn-default filter-btn" data-filter-value=".hackathon">Hackathon</button>
+    </div>
+
+    <div class="tag-filter">
+      <select name="select"  multiple="multiple"> <!--Supplement an id here instead of using 'name'-->
+        {% for tag in tags %}
+        <option value="{{ tag.title }}">{{ tag.title }}</option>
+        {% endfor %}
+      </select>
+
+    </div>
+
+{% block content %} {% endblock content %}
+
+{% block js %}
+  <!--JS Files-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+  <!--Add To Calendar ref: http://addtocalendar.com-->
+  <script type="text/javascript">(function () {
+            if (window.addtocalendar)if(typeof window.addtocalendar.start == "function")return;
+            if (window.ifaddtocalendar == undefined) { window.ifaddtocalendar = 1;
+                var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+                s.type = 'text/javascript';s.charset = 'UTF-8';s.async = true;
+                s.src = ('https:' == window.location.protocol ? 'https' : 'http')+'://addtocalendar.com/atc/1.5/atc.min.js';
+                var h = d[g]('body')[0];h.appendChild(s); }})();
+    </script>
+
+  <!--App JS-->
+  <script src="{{url_for('static', filename='js/app.js')}}"></script>
+
+  {% endblock js %}
+
+</body>
+
+</html>

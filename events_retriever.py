@@ -29,6 +29,11 @@ def index_page():
     #                 events=contentful_datareader.load_entries(CONTENT_ID_EVENT),
     #                 tags=contentful_datareader.load_entries(CONTENT_ID_TAG))
 
+@app.route('/next2weeks.html')
+def next_up():
+    events, tags = get_events()
+    return render_template('next2weeks.html', events=events, tags=tags)
+    
 def get_events():
     client = contentful.Client(SPACE_ID, ACCESS_TOKEN)
     entries = client.entries()
