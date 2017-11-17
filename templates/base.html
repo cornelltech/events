@@ -16,6 +16,7 @@
   <!--Add To Calendar-->
   <link href="https://addtocalendar.com/atc/1.5/atc-style-blue.css" rel="stylesheet" type="text/css">
 
+  {% block style %}
   <!--App CSS-->
   <link href="{{url_for('static', filename='css/app.css')}}" rel="stylesheet">
 
@@ -26,40 +27,38 @@
       background-repeat: repeat;
     }
   </style>
+  {% endblock %}
+  
 </head>
 
 <body>
 
   <div class="app-container">
 
-    <!--<div class="row row-offcanvas row-offcanvas-right">
-      <div class="jumbotron">
-        <h1>Cornell Does Events!</h1>
-        <p>an exciting catalog.</p>
+    <div class="navigation-bar">
+      <div class="filter-container">
+        <button class="btn btn-default filter-btn" data-filter-value="*">All</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".talk">Talks</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".conference">Conferences</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".recruitment">Recruitement</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".showcase">Showcase</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".discussion">Discussion</button>
+        <button class="btn btn-default filter-btn" data-filter-value=".hackathon">Hackathon</button>
       </div>
-    </div>-->
-    <!-- /row-->
 
-    <div class="filter-container">
-      <button class="btn btn-default filter-btn" data-filter-value="*">All</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".talk">Talks</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".conference">Conferences</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".recruitment">Recruitement</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".showcase">Showcase</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".discussion">Discussion</button>
-      <button class="btn btn-default filter-btn" data-filter-value=".hackathon">Hackathon</button>
-    </div>
+      <div class="tag-filter">
+        <select name="select"  multiple="multiple"> <!--Supplement an id here instead of using 'name'-->
+          {% for tag in tags %}
+          <option value="{{ tag.title }}">{{ tag.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-    <div class="tag-filter">
-      <select name="select"  multiple="multiple"> <!--Supplement an id here instead of using 'name'-->
-        {% for tag in tags %}
-        <option value="{{ tag.title }}">{{ tag.title }}</option>
-        {% endfor %}
-      </select>
+    </div> <!-- /navigation-bar -->
 
-    </div>
+    {% block content %} {% endblock content %}
 
-{% block content %} {% endblock content %}
+  </div> <!-- /container -->
 
 {% block js %}
   <!--JS Files-->

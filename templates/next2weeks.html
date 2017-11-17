@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 
+{% block style %}
+  {{ super() }}
+  <link href="{{url_for('static', filename='css/2weeks.css')}}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<h1> hey there how is it going! </h1>
+<div class="main-content-container">
+  <div class="sidebar-spacer"> </div>
+  <div class="content-list panel panel-default">
+    <!-- <div class="panel-body"> -->
+      {% for event in events %}
+
+      <div class="single-event panel-body">
+        <div class="single-event-header">
+          <div class="category-label {{ event.category }}"></div>
+          <div class="single-event-header-info">
+            <p>{{ event.start_time.strftime('%d %B %I:%M%p') }}</p>
+            <h4> {{ event.event_title }} </h4>
+          </div>
+        </div> <!--/single-event-header-->
+        <div class="single-event-description"> {{ event.description }}</div>
+      </div> <!--/ single-event -->
+
+      {% endfor %}
+
+
+  </div> <!-- /panel-default -->
+  <div class="sidebar-spacer"> </div>
+</div> <!-- /main-content-container -->
 {% endblock %}
