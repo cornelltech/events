@@ -43,25 +43,8 @@ def next_up():
     now = datetime.datetime.now(pytz.utc)
     future_cutoff = now + datetime.timedelta(days=14)
 
-    # print 'now', naive(now), 'future cutoff', naive(future_cutoff)
-    # # pdb.set_trace()
-    #
-    # soon_events = []
-    # for event in events:
-    #     print 'naive? ', naive(event.start_time)
-    #     # pdb.set_trace()
-    #     print event.start_time
-    #     print event.start_time.tzinfo
-    #     if event.start_time >= now:
-    #         if event.start_time <= future_cutoff:
-    #             soon_events.append(event)
+
     soon_events = filter(lambda x: x.start_time >= now and x.start_time <= future_cutoff, events)
-
-    for event in soon_events:
-        print event.event_title
-        print event.start_time
-
-    # soon_events = filter(lambda)
 
     return render_template('next2weeks.html', events=soon_events, tags=tags)
 
