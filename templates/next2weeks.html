@@ -5,6 +5,11 @@
   <link href="{{url_for('static', filename='css/next2weeks.css')}}" rel="stylesheet">
 {% endblock %}
 
+{% block navbar %}
+  <div class="homepage-link"> <a href="index.html">Back to main page</a> </div>
+  {{ super() }}
+{% endblock %}
+
 {% block content %}
   <div class="main-content-container">
     <div class="sidebar-spacer"> </div>

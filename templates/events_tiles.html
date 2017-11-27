@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block navbar %}
+  <div class="next2weeks-link"> <a href="next2weeks.html">Events in the next two weeks</a> </div>
+  {{ super() }}
+{% endblock %}
+
 {% block content %}
     <div class="grid">
 
