@@ -34,10 +34,6 @@ def index_page():
 
 @app.route('/next2weeks.html')
 def next_up():
-
-    def naive(d):
-        return d.tzinfo is None or d.tzinfo.utcoffset(d) is None
-
     events, tags = get_events()
 
     now = datetime.datetime.now(pytz.utc)
