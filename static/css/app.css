@@ -37,6 +37,13 @@ html, body {
 .app-container {
     margin: 0 16px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.next2weeks-link {
+  padding: 15px;
+  align-self: flex-end;
 }
 
 .modal-body .heading h4 {
@@ -144,18 +151,18 @@ html, body {
     flex-wrap: wrap;
 }
 
-.grid-item { 
+.grid-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     width: 350px;
     height: 300px;
-    
+
     color: white;
     background-color: #0ab78f;
     border-radius: 6px;
-    
+
     margin: 15px;
 
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);
@@ -177,7 +184,7 @@ html, body {
 .grid-item .header .category {
     text-transform: uppercase;
 }
-.grid-item .header p { 
+.grid-item .header p {
     margin: 0px;
 }
 
@@ -193,12 +200,12 @@ html, body {
     margin: 8px 0;
 }
 .grid-item .details p {
-    
+
 }
 
 
-@media (min-device-width: 375px) 
-  and (max-device-width: 667px) { 
+@media (min-device-width: 375px)
+  and (max-device-width: 667px) {
     .grid-item {
         width: 100%;
         overflow-x: hidden;
