@@ -38,10 +38,7 @@ def next_up():
 
     now = datetime.datetime.now(pytz.utc)
     future_cutoff = now + datetime.timedelta(days=14)
-
-
     soon_events = filter(lambda x: x.start_time >= now and x.start_time <= future_cutoff, events)
-
     return render_template('next2weeks.html', events=soon_events, tags=tags)
 
 def get_events():
@@ -53,7 +50,7 @@ def get_events():
 
         if(entry.content_type.id == 'event'):
             # standardize contentful's bad timezone handling
-            entry.start_time = entry.start_time.replace(tzinfo=pytz.utc)
+            entry.start_time = entry.start_time.replace(tzinfo=pytz.timezone('US/Eastern'))
             events.append(entry)
 
         if(entry.content_type.id == 'tag'):
