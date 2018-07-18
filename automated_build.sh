@@ -13,6 +13,6 @@ python freezer.py
 git config --global user.email "rachel.sobel@cornell.edu"
 git config --global user.name "Rachel Sobel"
 
-git add docs/
+git add .
 git commit -m "Automated rebuild on update"
 git push origin master

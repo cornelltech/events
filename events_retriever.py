@@ -18,19 +18,19 @@ except Exception as e:
 SPACE_ID = os.environ.get('SPACE_ID', None)
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', None)
 
-# CONTENT_ID_EVENT = 'event'
-# CONTENT_ID_TAG = 'tag'
+CONTENT_ID_EVENT = 'event'
+CONTENT_ID_TAG = 'tag'
 
 app = Flask(__name__)
 
 @app.route('/')
 def index_page():
     events, tags = get_events()
-    return render_template('events_tiles.html', events=events, tags=tags)
+    # return render_template('events_tiles.html', events=events, tags=tags)
 
-    # return render_template('events_tiles.html',
-    #                 events=contentful_datareader.load_entries(CONTENT_ID_EVENT),
-    #                 tags=contentful_datareader.load_entries(CONTENT_ID_TAG))
+    return render_template('events_tiles.html',
+                    events=contentful_datareader.load_entries(CONTENT_ID_EVENT),
+                    tags=contentful_datareader.load_entries(CONTENT_ID_TAG))
 
 @app.route('/next2weeks.html')
 def next_up():

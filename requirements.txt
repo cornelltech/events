@@ -4,5 +4,3 @@ flask
 flask-bootstrap
 Frozen-Flask
 jsonpickle
-pytz
-tzlocal
